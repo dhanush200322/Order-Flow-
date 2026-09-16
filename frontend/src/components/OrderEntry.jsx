@@ -1,21 +1,23 @@
 import { useState } from "react";
+import { submitOrder } from "../services/orderService";
 
 function OrderEntry() {
   const [side, setSide] = useState("BUY");
   const [orderType, setOrderType] = useState("LIMIT");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
     if (!quantity) {
-      alert("Please enter quantity.");
+      setMessage("Please enter quantity.");
       return;
     }
 
     if (orderType === "LIMIT" && !price) {
-      alert("Please enter price for a limit order.");
+      setMessage("Please enter price for a limit order.");
       return;
     }
 
@@ -26,16 +28,29 @@ function OrderEntry() {
       quantity: Number(quantity),
     };
 
-    console.log("Order submitted:", order);
+    console.log("Order prepared:", order);
 
-    alert(`${side} order submitted successfully!`);
+    setMessage(
+      `${side} ${orderType} order prepared successfully.`
+    );
+
+    // Backend integration will be enabled
+    // when the Java API is available.
+    //
+    // try {
+    //   const result = await submitOrder(order);
+    //   console.log("Backend response:", result);
+    // } catch (error) {
+    //   setMessage("Unable to submit order to backend.");
+    // }
   };
 
   return (
-    <div className="order-entry-card">
+    <div className="order-entry">
       <h2>Order Entry</h2>
 
       <form onSubmit={handleSubmit}>
+
         <div className="form-group">
           <label>Order Side</label>
 
@@ -59,12 +74,11 @@ function OrderEntry() {
         </div>
 
         <div className="form-group">
-          <label htmlFor="orderType">Order Type</label>
+          <label>Order Type</label>
 
           <select
-            id="orderType"
             value={orderType}
-            onChange={(e) => setOrderType(e.target.value)}
+            onChange={(event) => setOrderType(event.target.value)}
           >
             <option value="LIMIT">LIMIT</option>
             <option value="MARKET">MARKET</option>
@@ -73,37 +87,40 @@ function OrderEntry() {
 
         {orderType === "LIMIT" && (
           <div className="form-group">
-            <label htmlFor="price">Price</label>
+            <label>Price</label>
 
             <input
-              id="price"
               type="number"
-              min="0"
               step="0.01"
-              placeholder="Enter price"
               value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              onChange={(event) => setPrice(event.target.value)}
+              placeholder="Enter price"
             />
           </div>
         )}
 
         <div className="form-group">
-          <label htmlFor="quantity">Quantity</label>
+          <label>Quantity</label>
 
           <input
-            id="quantity"
             type="number"
             min="1"
-            step="1"
-            placeholder="Enter quantity"
             value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
+            onChange={(event) => setQuantity(event.target.value)}
+            placeholder="Enter quantity"
           />
         </div>
 
-        <button type="submit" className="place-order-button">
-          PLACE {side} ORDER
+        <button type="submit" className="submit-order">
+          Submit Order
         </button>
+
+        {message && (
+          <p className="order-message">
+            {message}
+          </p>
+        )}
+
       </form>
     </div>
   );
