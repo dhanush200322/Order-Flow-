@@ -1,0 +1,134 @@
+#root {
+  min-height: 100vh;
+}
+
+.trading-terminal {
+  min-height: 100vh;
+  background: #f4f7fb;
+}
+
+.terminal-header {
+  background: #111827;
+  color: white;
+  padding: 24px 40px;
+}
+
+.terminal-header h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.terminal-header p {
+  margin: 5px 0 0;
+  color: #9ca3af;
+}
+
+.terminal-content {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 25px;
+}
+
+.order-entry-card,
+.placeholder-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.order-entry-card h2,
+.placeholder-card h2 {
+  margin-top: 0;
+  color: #111827;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  font-size: 15px;
+}
+
+/* BUY / SELL buttons */
+.side-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.side-buttons button {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #9ca3af;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #111827;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.side-buttons button:hover {
+  background: #f3f4f6;
+}
+
+/* Selected BUY button */
+.side-buttons button.active.buy {
+  background: #16a34a;
+  color: #ffffff;
+  border-color: #16a34a;
+}
+
+/* Selected SELL button */
+.side-buttons button.active.sell {
+  background: #dc2626;
+  color: #ffffff;
+  border-color: #dc2626;
+}
+
+.place-order-button {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 7px;
+  background: #2563eb;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.place-order-button:hover {
+  background: #1d4ed8;
+}
+
+.placeholder-card {
+  min-height: 250px;
+}
+
+.placeholder-card p {
+  color: #6b7280;
+}
+
+@media (max-width: 800px) {
+  .terminal-content {
+    grid-template-columns: 1fr;
+  }
+}
