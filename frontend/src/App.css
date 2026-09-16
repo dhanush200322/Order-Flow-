@@ -7,6 +7,7 @@
   background: #f4f7fb;
 }
 
+/* Header */
 .terminal-header {
   background: #111827;
   color: white;
@@ -23,17 +24,21 @@
   color: #9ca3af;
 }
 
+/* Main terminal layout */
 .terminal-content {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 40px auto;
   padding: 0 20px;
+
   display: grid;
   grid-template-columns: 400px 1fr;
   gap: 25px;
 }
 
+/* Cards */
 .order-entry-card,
-.placeholder-card {
+.placeholder-card,
+.recent-trades {
   background: white;
   border-radius: 12px;
   padding: 25px;
@@ -41,11 +46,13 @@
 }
 
 .order-entry-card h2,
-.placeholder-card h2 {
+.placeholder-card h2,
+.recent-trades h2 {
   margin-top: 0;
   color: #111827;
 }
 
+/* Form */
 .form-group {
   margin-bottom: 20px;
 }
@@ -62,8 +69,10 @@
   width: 100%;
   box-sizing: border-box;
   padding: 12px;
+
   border: 1px solid #d1d5db;
   border-radius: 7px;
+
   font-size: 15px;
 }
 
@@ -75,12 +84,17 @@
 
 .side-buttons button {
   flex: 1;
+
   padding: 12px;
+
   border: 1px solid #9ca3af;
   border-radius: 7px;
+
   background: #ffffff;
   color: #111827;
+
   cursor: pointer;
+
   font-weight: 700;
   font-size: 15px;
 }
@@ -103,15 +117,21 @@
   border-color: #dc2626;
 }
 
+/* Submit order button */
 .place-order-button {
   width: 100%;
+
   padding: 13px;
+
   border: none;
   border-radius: 7px;
+
   background: #2563eb;
   color: white;
+
   font-size: 15px;
   font-weight: 700;
+
   cursor: pointer;
 }
 
@@ -119,6 +139,68 @@
   background: #1d4ed8;
 }
 
+/* Recent Trades */
+.recent-trades {
+  min-height: 250px;
+}
+
+.trades-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.trades-header h2 {
+  margin: 0;
+  color: #111827;
+}
+
+/* LIVE indicator */
+.live-indicator {
+  font-size: 13px;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+/* Recent trades table */
+.recent-trades table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.recent-trades th {
+  text-align: left;
+
+  padding: 12px;
+
+  background: #f3f4f6;
+  color: #374151;
+
+  font-size: 14px;
+}
+
+.recent-trades td {
+  padding: 12px;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  color: #374151;
+}
+
+/* Trade side */
+.trade-buy {
+  color: #16a34a;
+  font-weight: 700;
+}
+
+.trade-sell {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+/* Placeholder */
 .placeholder-card {
   min-height: 250px;
 }
@@ -127,8 +209,143 @@
   color: #6b7280;
 }
 
+/* Responsive design */
 @media (max-width: 800px) {
   .terminal-content {
     grid-template-columns: 1fr;
+  }
+
+  .terminal-header {
+    padding: 20px;
+  }
+
+  .terminal-content {
+    margin: 25px auto;
+  }
+}
+
+/* ============================= */
+/* My Orders */
+/* ============================= */
+
+.orders-section {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 0 20px;
+}
+
+.my-orders-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.orders-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.orders-header h2 {
+  margin: 0;
+  color: #111827;
+}
+
+.order-count {
+  padding: 6px 12px;
+
+  background: #f3f4f6;
+  border-radius: 20px;
+
+  color: #374151;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Orders table */
+
+.orders-table-wrapper {
+  overflow-x: auto;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table th {
+  text-align: left;
+
+  padding: 13px;
+
+  background: #f3f4f6;
+
+  color: #374151;
+
+  font-size: 14px;
+}
+
+.orders-table td {
+  padding: 13px;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  color: #374151;
+}
+
+/* BUY */
+
+.order-buy {
+  color: #16a34a;
+  font-weight: 700;
+}
+
+/* SELL */
+
+.order-sell {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+/* Status */
+
+.order-status {
+  display: inline-block;
+
+  padding: 5px 10px;
+
+  border-radius: 15px;
+
+  background: #dcfce7;
+  color: #166534;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Empty orders */
+
+.no-orders {
+  text-align: center;
+
+  padding: 30px;
+
+  color: #6b7280;
+}
+
+/* Mobile */
+
+@media (max-width: 800px) {
+
+  .orders-section {
+    padding: 0 20px;
+  }
+
+  .orders-table {
+    min-width: 650px;
   }
 }

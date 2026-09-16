@@ -1,63 +1,72 @@
 import { useState } from "react";
-import { submitOrder } from "../services/orderService";
 
-function OrderEntry() {
+function OrderEntry({ onOrderSubmitted }) {
   const [side, setSide] = useState("BUY");
   const [orderType, setOrderType] = useState("LIMIT");
   const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (!quantity) {
-      setMessage("Please enter quantity.");
+    // Validate quantity
+    if (!quantity || Number(quantity) <= 0) {
+      setMessage("Please enter a valid quantity.");
       return;
     }
 
-    if (orderType === "LIMIT" && !price) {
-      setMessage("Please enter price for a limit order.");
+    // Validate price for LIMIT orders
+    if (
+      orderType === "LIMIT" &&
+      (!price || Number(price) <= 0)
+    ) {
+      setMessage("Please enter a valid price.");
       return;
     }
 
     const order = {
+      id: Date.now(),
       side,
       orderType,
       price: orderType === "LIMIT" ? Number(price) : null,
       quantity: Number(quantity),
+      status: "Submitted",
     };
 
-    console.log("Order prepared:", order);
+    console.log("Order submitted:", order);
 
-    setMessage(
-      `${side} ${orderType} order prepared successfully.`
-    );
+    // Send order to parent component
+    onOrderSubmitted(order);
 
-    // Backend integration will be enabled
-    // when the Java API is available.
-    //
-    // try {
-    //   const result = await submitOrder(order);
-    //   console.log("Backend response:", result);
-    // } catch (error) {
-    //   setMessage("Unable to submit order to backend.");
-    // }
+    // Success message
+    setMessage("Order added to My Orders.");
+
+    // Clear input fields
+    setPrice("");
+    setQuantity("");
   };
 
   return (
-    <div className="order-entry">
+    <div className="order-entry-card">
+
       <h2>Order Entry</h2>
 
       <form onSubmit={handleSubmit}>
 
+        {/* Order Side */}
         <div className="form-group">
           <label>Order Side</label>
 
           <div className="side-buttons">
+
             <button
               type="button"
-              className={side === "BUY" ? "active buy" : ""}
+              className={
+                side === "BUY"
+                  ? "active buy"
+                  : ""
+              }
               onClick={() => setSide("BUY")}
             >
               BUY
@@ -65,26 +74,35 @@ function OrderEntry() {
 
             <button
               type="button"
-              className={side === "SELL" ? "active sell" : ""}
+              className={
+                side === "SELL"
+                  ? "active sell"
+                  : ""
+              }
               onClick={() => setSide("SELL")}
             >
               SELL
             </button>
+
           </div>
         </div>
 
+        {/* Order Type */}
         <div className="form-group">
           <label>Order Type</label>
 
           <select
             value={orderType}
-            onChange={(event) => setOrderType(event.target.value)}
+            onChange={(event) =>
+              setOrderType(event.target.value)
+            }
           >
             <option value="LIMIT">LIMIT</option>
             <option value="MARKET">MARKET</option>
           </select>
         </div>
 
+        {/* Price */}
         {orderType === "LIMIT" && (
           <div className="form-group">
             <label>Price</label>
@@ -92,13 +110,17 @@ function OrderEntry() {
             <input
               type="number"
               step="0.01"
+              min="0"
               value={price}
-              onChange={(event) => setPrice(event.target.value)}
+              onChange={(event) =>
+                setPrice(event.target.value)
+              }
               placeholder="Enter price"
             />
           </div>
         )}
 
+        {/* Quantity */}
         <div className="form-group">
           <label>Quantity</label>
 
@@ -106,15 +128,22 @@ function OrderEntry() {
             type="number"
             min="1"
             value={quantity}
-            onChange={(event) => setQuantity(event.target.value)}
+            onChange={(event) =>
+              setQuantity(event.target.value)
+            }
             placeholder="Enter quantity"
           />
         </div>
 
-        <button type="submit" className="submit-order">
+        {/* Submit */}
+        <button
+          type="submit"
+          className="place-order-button"
+        >
           Submit Order
         </button>
 
+        {/* Message */}
         {message && (
           <p className="order-message">
             {message}
