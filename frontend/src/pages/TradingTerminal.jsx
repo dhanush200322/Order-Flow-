@@ -1,9 +1,10 @@
 import { useState } from "react";
 
 import OrderEntry from "../components/OrderEntry";
-import RecentTrades from "../components/RecentTrades";
 import MyOrders from "../components/MyOrders";
+import RecentTrades from "../components/RecentTrades";
 import OrderBook from "../components/OrderBook";
+import MarketDepth from "../components/MarketDepth";
 
 function TradingTerminal() {
   const [orders, setOrders] = useState([]);
@@ -18,35 +19,43 @@ function TradingTerminal() {
   return (
     <div className="trading-terminal">
 
+      {/* HEADER */}
       <header className="terminal-header">
         <h1>OrderFlow Trading Terminal</h1>
-
-        <p>
-          High-Performance Trading Interface
-        </p>
+        <p>High-performance market trading interface</p>
       </header>
 
+      {/* MAIN CONTENT */}
       <main className="terminal-content">
 
-        <section className="order-section">
+        {/* ORDER ENTRY */}
+        <section className="order-entry-card">
           <OrderEntry
             onOrderSubmitted={handleOrderSubmitted}
           />
         </section>
 
-        <section className="market-section">
+        {/* RECENT TRADES */}
+        <section className="orders-section">
           <RecentTrades />
         </section>
 
+        {/* MY ORDERS */}
+        <section className="orders-section">
+          <MyOrders orders={orders} />
+        </section>
+
+        {/* ORDER BOOK */}
+        <section className="orders-section">
+          <OrderBook />
+        </section>
+
+        {/* MARKET DEPTH */}
+        <section className="orders-section">
+          <MarketDepth />
+        </section>
+
       </main>
-
-      <section className="orders-section">
-        <MyOrders orders={orders} />
-      </section>
-
-      <section className="orders-section">
-        <OrderBook />
-      </section>
 
     </div>
   );
