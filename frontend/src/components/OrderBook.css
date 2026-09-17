@@ -1,0 +1,98 @@
+.order-book-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  margin-top: 25px;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.order-book-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.order-book-header h2 {
+  margin: 0;
+  color: #111827;
+}
+
+.book-live {
+  color: #16a34a;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.book-section {
+  margin-bottom: 10px;
+}
+
+.book-section h3 {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+.ask-title {
+  color: #dc2626;
+}
+
+.bid-title {
+  color: #16a34a;
+}
+
+.order-book-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.order-book-table th {
+  padding: 10px;
+  text-align: left;
+
+  background: #f3f4f6;
+  color: #374151;
+
+  font-size: 13px;
+}
+
+.order-book-table td {
+  padding: 10px;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  color: #374151;
+}
+
+.ask-price {
+  color: #dc2626 !important;
+  font-weight: 700;
+}
+
+.bid-price {
+  color: #16a34a !important;
+  font-weight: 700;
+}
+
+/* Spread */
+
+.spread-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 15px 0;
+  padding: 10px 14px;
+
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+
+  color: #374151;
+}
+
+.spread-row strong {
+  color: #111827;
+}
