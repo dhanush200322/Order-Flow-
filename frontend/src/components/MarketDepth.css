@@ -1,0 +1,164 @@
+.market-depth-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  margin-top: 25px;
+}
+
+.market-depth-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.market-depth-header h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 21px;
+}
+
+.market-depth-header p {
+  margin: 5px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.depth-status {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b7280;
+  background: #f3f4f6;
+  padding: 7px 10px;
+  border-radius: 6px;
+}
+
+.depth-container {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.depth-side {
+  position: relative;
+}
+
+.depth-side-title {
+  display: grid;
+  grid-template-columns: 1fr 100px 80px;
+  gap: 10px;
+  padding: 10px 15px;
+  font-size: 12px;
+  font-weight: 700;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.ask-title {
+  color: #dc2626;
+}
+
+.bid-title {
+  color: #16a34a;
+}
+
+.depth-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 100px 80px;
+  gap: 10px;
+  padding: 9px 15px;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+.depth-row + .depth-row {
+  border-top: 1px solid #f3f4f6;
+}
+
+.depth-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.ask-bar {
+  background: #dc2626;
+}
+
+.bid-bar {
+  background: #16a34a;
+}
+
+.depth-price,
+.depth-quantity {
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+}
+
+.ask-row .depth-price {
+  color: #dc2626;
+}
+
+.bid-row .depth-price {
+  color: #16a34a;
+}
+
+.depth-spread {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 11px;
+  background: #f3f4f6;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.depth-spread strong {
+  color: #111827;
+  font-size: 14px;
+}
+
+.depth-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.depth-footer strong {
+  color: #111827;
+}
+
+@media (max-width: 700px) {
+  .market-depth-card {
+    padding: 16px;
+  }
+
+  .depth-side-title,
+  .depth-row {
+    grid-template-columns: 1fr 80px 60px;
+  }
+
+  .depth-footer {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .market-depth-header {
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
